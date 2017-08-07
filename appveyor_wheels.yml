@@ -1,0 +1,41 @@
+version: "{build}"
+
+configuration: Release
+
+environment:
+  BOOST_ROOT: C:\Libraries\boost_1_63_0
+  BOOST_LIBRARYDIR: C:\Libraries\boost_1_63_0\stage\lib
+
+  matrix:
+#    - PYTHON: "C:\\Python27"
+#      PYTHON_VERSION: "2.7.x" # currently 2.7.13
+#      PYTHON_ARCH: "32"
+#    - PYTHON: "C:\\Python27-x64"
+#      PYTHON_VERSION: "2.7.x" # currently 2.7.13
+#      PYTHON_ARCH: "64"
+    - PYTHON: "C:\\Python34"
+      PYTHON_VERSION: "3.4.x" # currently 3.4.4
+      PYTHON_ARCH: "32"
+#    - PYTHON: "C:\\Python34-x64"
+#      PYTHON_VERSION: "3.4.x" # currently 3.4.4
+#      PYTHON_ARCH: "64"
+#    - PYTHON: "C:\\Python35"
+#      PYTHON_VERSION: "3.5.x" # currently 3.5.3
+#      PYTHON_ARCH: "32"
+#    - PYTHON: "C:\\Python35-x64"
+#      PYTHON_VERSION: "3.5.x" # currently 3.5.3
+#      PYTHON_ARCH: "64"
+
+build_script:
+  - "tree %BOOST_ROOT%"
+#  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+#  - "%PYTHON%\\Scripts\\pip install wheel"
+#  - "%PYTHON%\\python.exe setup.py bdist_wheel"
+
+#artifacts:
+#  # bdist_wheel puts your built wheel in the dist directory
+#  - path: build
+
+
+#on_finish:
+#  - ps: $root = Resolve-Path .\tools\python\build; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName to-publish }

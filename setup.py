@@ -541,6 +541,7 @@ class build(_build):
             py_ver = get_python_version()
             for ext in [py_ver.replace(".", "") + '.lib', py_ver + 'mu.lib', py_ver + 'm.lib', py_ver + 'u.lib']:
                 py_lib = os.path.abspath(os.path.join(inc_dir, '../libs/', 'python' + ext))
+                log.info("PYLIB is : %s" % py_lib)
                 if os.path.exists(py_lib):
                     cmake_extra_arch += ['-DPYTHON_LIBRARY={lib}'.format(lib=py_lib)]
                     break
@@ -562,6 +563,7 @@ class build(_build):
             cmake_path,
             "..",
         ] + cmake_extra + cmake_extra_arch
+        log.info('RUNNING CMAKE CMD : %s' % cmake_cmd)
         if run_process(cmake_cmd):
             raise DistutilsSetupError("cmake configuration failed!")
 
@@ -574,6 +576,9 @@ class build(_build):
             "--target", "install",
         ]
 
+        log.info('RUNNING CMAKE CMD : %s' % cmake_cmd)
+
+        raise DistutilsSetupError("cmake build failed!")
         if run_process(cmake_cmd):
             raise DistutilsSetupError("cmake build failed!")
 
